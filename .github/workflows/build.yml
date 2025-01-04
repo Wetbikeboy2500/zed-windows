@@ -12,6 +12,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
+    - name: Set up shorter Cargo home
+      run: |
+        mkdir C:\cargo
+        echo "CARGO_HOME=C:\\cargo" >> $GITHUB_ENV
+
     - name: Install .NET Core
       uses: actions/setup-dotnet@v4
       with:
