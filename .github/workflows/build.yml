@@ -12,10 +12,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Set up shorter Cargo home
+    - name: Enable Long Path Support
       run: |
-        mkdir C:\cargo
-        echo "CARGO_HOME=C:\\cargo" >> $GITHUB_ENV
+        reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f
 
     - name: Install .NET Core
       uses: actions/setup-dotnet@v4
