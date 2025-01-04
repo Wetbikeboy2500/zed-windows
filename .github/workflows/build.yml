@@ -12,10 +12,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
-    - name: Enable Long Path Support
-      run: |
-        reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f
-
     - name: Install .NET Core
       uses: actions/setup-dotnet@v4
       with:
@@ -29,6 +25,7 @@ jobs:
 
     - name: Clone Source Code
       run: |
+        git config --system core.longpaths true
         git config --global user.email 41898282+github-actions[bot]@users.noreply.github.com
         git config --global user.name github-actions[bot]
         git clone --depth 1 --branch v0.167.1 https://github.com/zed-industries/zed.git
